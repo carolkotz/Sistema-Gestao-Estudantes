@@ -50,11 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AtualizarDeletarEstudantes.cs">
+    <Compile Include="AtualizarDeletarEstudante.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AtualizarDeletarEstudantes.Designer.cs">
-      <DependentUpon>AtualizarDeletarEstudantes.cs</DependentUpon>
+    <Compile Include="AtualizarDeletarEstudante.Designer.cs">
+      <DependentUpon>AtualizarDeletarEstudante.cs</DependentUpon>
     </Compile>
     <Compile Include="Estudante.cs" />
     <Compile Include="FormInserirEstudante.cs">
@@ -84,8 +84,8 @@
     <Compile Include="MEU_BD.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AtualizarDeletarEstudantes.resx">
-      <DependentUpon>AtualizarDeletarEstudantes.cs</DependentUpon>
+    <EmbeddedResource Include="AtualizarDeletarEstudante.resx">
+      <DependentUpon>AtualizarDeletarEstudante.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormInserirEstudante.resx">
       <DependentUpon>FormInserirEstudante.cs</DependentUpon>

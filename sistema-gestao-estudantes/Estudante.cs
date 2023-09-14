@@ -2,12 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace sistema_gestao_estudantes
 {
@@ -18,10 +16,10 @@ namespace sistema_gestao_estudantes
         // Função que inclui o estudante no banco de dados.
         public bool inserirEstudante(string nome, string sobrenome,
             DateTime nascimento, string telefone, string genero,
-            string endereco, MemoryStream foto) 
+            string endereco, MemoryStream foto)
         {
-            MySqlCommand comando = new MySqlCommand ("INSERT INTO `estudantes`(`nome`, `sobrenome`, `nascimento`, `genero`, `telefone`, `endereco`, `foto`) VALUES (@nm,@sbn,@nsc,@gen,@tel,@end,@ft)", bancoDeDados.getConexao); 
-            
+            MySqlCommand comando = new MySqlCommand("INSERT INTO `estudantes`(`nome`, `sobrenome`, `nascimento`, `genero`, `telefone`, `endereco`, `foto`) VALUES (@nm,@sbn,@nsc,@gen,@tel,@end,@ft)", bancoDeDados.getConexao);
+
             comando.Parameters.Add("@nm", MySqlDbType.VarChar).Value = nome;
             comando.Parameters.Add("@sbn", MySqlDbType.VarChar).Value = sobrenome;
             comando.Parameters.Add("@nsc", MySqlDbType.Date).Value = nascimento;
@@ -44,13 +42,11 @@ namespace sistema_gestao_estudantes
             }
         }
 
-        public bool AtualizarEstudante(int id, string nome, string sobrenome,
-            DateTime nascimento, string telefone, string genero,
-            string endereco, MemoryStream foto)
+        public bool atualizarEstudante(int id, string nome, string sobrenome,
+           DateTime nascimento, string telefone, string genero,
+           string endereco, MemoryStream foto)
         {
             MySqlCommand comando = new MySqlCommand("UPDATE `estudantes` SET `nome`= @nm,`sobrenome`= @sbn,`nascimento`= @nsc,`genero`= @gen,`telefone`= @tel,`endereco`= @end,`foto`= @ft WHERE `id` = @id", bancoDeDados.getConexao);
-
-
 
             comando.Parameters.Add("@id", MySqlDbType.Int32).Value = id;
             comando.Parameters.Add("@nm", MySqlDbType.VarChar).Value = nome;
@@ -61,11 +57,7 @@ namespace sistema_gestao_estudantes
             comando.Parameters.Add("@end", MySqlDbType.VarChar).Value = endereco;
             comando.Parameters.Add("@ft", MySqlDbType.LongBlob).Value = foto.ToArray();
 
-
-
             bancoDeDados.abrirConexao();
-
-
 
             if (comando.ExecuteNonQuery() == 1)
             {
@@ -79,10 +71,11 @@ namespace sistema_gestao_estudantes
             }
         }
 
-        // Deletar o estudante
+        // Deletar o estudante.
         public bool deletarEstudante(int id)
-        {
-            MySqlCommand comando = new MySqlCommand("DELETE FROM `estudantes` WHERE `Id` = @studentid");
+        { 
+            MySqlCommand comando = 
+                new MySqlCommand("DELETE FROM `estudantes` WHERE `id` = @studentid");
             comando.Parameters.Add("@studentid", MySqlDbType.Int32).Value = id;
 
             bancoDeDados.abrirConexao();
@@ -99,7 +92,7 @@ namespace sistema_gestao_estudantes
             }
         }
 
-        public DataTable getEstudantes(MySqlCommand comando)
+        public DataTable pegarEstudantes(MySqlCommand comando)
         {
             comando.Connection = bancoDeDados.getConexao;
             MySqlDataAdapter adaptador = new MySqlDataAdapter(comando);
